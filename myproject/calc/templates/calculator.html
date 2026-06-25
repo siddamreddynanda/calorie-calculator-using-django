@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Django Calculator App</title>
+    <style>
+        /* This centers everything perfectly in the middle of your screen */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Creates a beautiful white card layout */
+        .calculator-card {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333333;
+            margin-bottom: 25px;
+        }
+
+        /* Arranges the inputs neatly vertically */
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #555555;
+            font-size: 14px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        /* Makes the calculate button look modern */
+        button {
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Highlights the result box */
+        .result-box {
+            margin-top: 25px;
+            padding: 15px;
+            background-color: #e9ecef;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #2b2b2b;
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #777777;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator-card">
+        <h2>Django Calculator App</h2>
+        
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label>First Number</label>
+                <input type="number" name="num1" step="any" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Second Number</label>
+                <input type="number" name="num2" step="any" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Operation</label>
+                <select name="operation">
+                    <option value="Add">Add</option>
+                    <option value="Subtract">Subtract</option>
+                    <option value="Multiply">Multiply</option>
+                    <option value="Divide">Divide</option>
+                </select>
+            </div>
+            
+            <button type="submit">Calculate</button>
+        </form>
+
+        {% if result is not None %}
+            <div class="result-box">
+                The result is: {{ result }}
+            </div>
+        {% endif %}
+
+        <footer>
+            <p>&copy; 2026 sep anand sarav</p>
+        </footer>
+    </div>
+
+</body>
+</html>
